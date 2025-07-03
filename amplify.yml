@@ -1,0 +1,19 @@
+version: 1
+applications:
+  - appRoot: src
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - yarn install --frozen-lockfile # Instalar las dependencias de manera coherente
+        build:
+          commands:
+            - yarn build # Ejecutar el build usando yarn
+      artifacts:
+        baseDirectory: .next
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/* # Caché de las dependencias
+          - .next/cache/**/* # Caché de Next.js
